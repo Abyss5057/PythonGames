@@ -33,8 +33,67 @@ def placeBomb(board, num):
     
     return board
 
+def getNeighbor(board, y, x):
+    height = len(board)
+    width = len(board[0])
+
+    # "nei" means Neighbor
+    neis = []
+    offsetsY = [-1, -1, -1, 0, 0, 1, 1, 1]
+    offsetsX = [-1, 0, 1, -1, 1, -1, 0, 1]
+
+    for i in range(8):
+        nei = 0
+
+        """
+        try:
+            nei = board[y + offsetsY[i]][x + offsetsX[i]]
+        except IndexError:
+            print()
+            nei = 0
+        """
+        neiY = y + offsetsY[i]
+        neiX = x + offsetsX[i]
+
+        if not(0 <= neiY <= height - 1):
+            nei = 0
+            continue
+        if not(0 <= neiX <= width - 1):
+            nei = 0
+            continue
+
+        nei = board[neiY][neiX]
+        
+        neis.append(nei)
+    
+    return neis
+
 def placeIndicater(board):
-    pass
+    height = len(board)
+    width = len(board[0])
+
+    for i in range(height):
+        for j in range(width):
+            if(board[i][j] == "b"):
+                continue
+
+            neis = getNeighbor(board, i, j)
+
+            count = 0
+            for k in neis:
+                if(k == "b"):
+                    count += 1
+            
+            board[i][j] = count
+
+            """
+            if(count == 0):
+                board[i][j] = "b"
+            else:
+                board[i][j] = count  
+            """ 
+    
+    return board
 
 def drow(board, mask = [], mes = ""):
     isHideZero = True
@@ -53,4 +112,4 @@ def drow(board, mask = [], mes = ""):
         print(line)
     
 
-drow(placeBomb(createBoard(4, 8), 5))
+drow(placeIndicater(placeBomb(createBoard(6, 12), 70)))
