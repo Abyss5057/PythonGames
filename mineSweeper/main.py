@@ -97,6 +97,7 @@ def placeIndicater(board):
 
 def drow(board, mask = [], mes = ""):
     isHideZero = True
+    isSpace = True
 
     height = len(board)
     width = len(board[0])
@@ -105,11 +106,16 @@ def drow(board, mask = [], mes = ""):
         line = ""
         for j in range(width):
             line += str(board[i][j])
+            if(isSpace == True):
+                line += " "
+
         
         if(isHideZero):
             line = line.replace("0", " ")
         
         print(line)
+        if(isSpace == True):
+            print()
     
 
-drow(placeIndicater(placeBomb(createBoard(6, 12), 70)))
+drow(placeIndicater(placeBomb(createBoard(6, 12), 10)))
