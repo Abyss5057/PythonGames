@@ -107,7 +107,7 @@ def drow(board, mask = [], mes = ""):
         for j in range(width):
             line += str(board[i][j])
             if(isSpace == True):
-                line += " "
+                line += "  "
 
         
         if(isHideZero):
@@ -116,6 +116,38 @@ def drow(board, mask = [], mes = ""):
         print(line)
         if(isSpace == True):
             print()
+
+def askCellPos():
+    print("Type position of cell u want to operate")
+    print("open : y x")
+    print("flag : fy x")
+
+    line = input()
+
+    # flg is isFlag.
+    # 0 : open mode
+    # 1 : flag mode
+    flg = 0
+    if(line[0] == "f"):
+        flg = 1
+        line = line.strip("f")
+    elif(type(line[0]) == int):
+        flg = 0
+    else:
+        pass
+    
+    yx = line.split()
+
+    return [flg, yx[0], yx[1]]
+
+
+
+
+
+    
     
 
-drow(placeIndicater(placeBomb(createBoard(6, 12), 10)))
+def openCell(board):
+    askCellPos()
+
+drow(placeIndicater(placeBomb(createBoard(5, 12), 10)))
