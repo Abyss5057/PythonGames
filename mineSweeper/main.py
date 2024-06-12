@@ -145,7 +145,7 @@ def askCellPos():
 
 
     
-    
+
 
 def openCell(board):
     askCellPos()
