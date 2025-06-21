@@ -5,6 +5,7 @@
 # x | x | x
 
 # Tic Tak Toe wo tukuru
+#sgjkwrgijergwrgjio
 
 import random
 
